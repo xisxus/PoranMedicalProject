@@ -2,7 +2,7 @@
 {
     public class CustomerCallRequest
     {
-        public int CustomerRequestID { get; set; }
+        public int CustomerCallRequestID { get; set; }
         public string Name { get; set; }
         public string MobileNo { get; set; }
         public string Email { get; set; }

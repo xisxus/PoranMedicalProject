@@ -10,27 +10,44 @@ namespace PoranMedicalProject.Models.DAL
 
 
         // DbSets for your entities
+        public DbSet<ActivityLog> ActivityLogs { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Patient> Patients { get; set; }
-        public DbSet<MedicalReport> MedicalReports { get; set; }
-        public DbSet<Hospital> Hospitals { get; set; }
-        public DbSet<TreatmentPlan> TreatmentPlans { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Visa> Visas { get; set; }
         public DbSet<Cost> Costs { get; set; }
-        public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Guide> Guids { get; set; }
-        public DbSet<GuidPatient> GuidPatients { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Medicine> Medicines { get; set; }
         public DbSet<CustomerCallRequest> CustomerCallRequests { get; set; }
         public DbSet<CommissionAgent> CommissionAgents { get; set; }
         public DbSet<Commission> Commissions { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<DoctorExperience> DoctorExperiences { get; set; }
+        public DbSet<Facilities> Facilities { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<FollowUp> FollowUps { get; set; }
         public DbSet<Guide> Guides { get; set; }
+        public DbSet<Hospital> Hospitals { get; set; }
+        public DbSet<HospitalFacilities> HospitalFacilities { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Insurance> Insurances { get; set; }
+       
+        public DbSet<MedicalReport> MedicalReports { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<PatientAttendent> patientAttendents { get; set; }
+        public DbSet<PatientsTravel> PatientsTravels { get; set; }
+        public DbSet<PatientFacilities> PatientFacilities { get; set; }
+        public DbSet<DoctorQualification> DoctorQualifications { get; set; }
+        public DbSet<Surgery> Surgeries { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+
+
+        public DbSet<TreatmentPlan> TreatmentPlans { get; set; }
+        
+        public DbSet<Visa> Visas { get; set; }
+       
+       
+       
+       
+    
 
         // Override the OnModelCreating method for any specific configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -73,34 +90,14 @@ namespace PoranMedicalProject.Models.DAL
                 .WithMany(ca => ca.Commissions)
                 .HasForeignKey(c => c.AgentID);
 
-            modelBuilder.Entity<TreatmentPlanHospital>()
-        .HasKey(tph => new { tph.TreatmentPlanID, tph.HospitalID });
-
-            // Configuring relationships
-            modelBuilder.Entity<TreatmentPlanHospital>()
-                .HasOne(tph => tph.TreatmentPlan)
-                .WithMany(tp => tp.TreatmentPlanHospitals)
-                .HasForeignKey(tph => tph.TreatmentPlanID);
-
-            modelBuilder.Entity<TreatmentPlanHospital>()
-                .HasOne(tph => tph.Hospital)
-                .WithMany(h => h.TreatmentPlanHospitals)
-                .HasForeignKey(tph => tph.HospitalID);
+           
 
             modelBuilder.Entity<CommissionAgent>()
                  .HasOne(ca => ca.ApplicationUser)
                  .WithMany()  // Assuming each ApplicationUser can have multiple CommissionAgents
                  .HasForeignKey(ca => ca.UserID);
 
-            modelBuilder.Entity<GuidPatient>()
-           .HasOne(gp => gp.Guide)
-           .WithMany(g => g.GuidPatients)
-           .HasForeignKey(gp => gp.GuidID);
-
-            modelBuilder.Entity<GuidPatient>()
-                .HasOne(gp => gp.Patient)
-                .WithMany(p => p.GuidPatients)
-                .HasForeignKey(gp => gp.PatientID);
+          
 
             // Define relationships for Hospital and Appointment
             modelBuilder.Entity<Hospital>()
@@ -110,6 +107,12 @@ namespace PoranMedicalProject.Models.DAL
 
             modelBuilder.Entity<Guide>()
         .HasKey(g => g.GuidID);
+
+            modelBuilder.Entity<TreatmentPlan>()
+           .HasOne(tp => tp.Hospital)
+           .WithMany(h => h.TreatmentsPlans)
+           .HasForeignKey(tp => tp.HospitalId)
+           .OnDelete(DeleteBehavior.NoAction); // Specify 'Restrict' to avoid cascading deletes
         }
     }
 }

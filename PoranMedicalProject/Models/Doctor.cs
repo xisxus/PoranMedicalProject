@@ -7,8 +7,8 @@
         public string DoctorDasignation { get; set;}
         public int HospitalID {  get; set; }    
         public virtual Hospital Hospital { get; set; }
-        public ICollection<Qualification> Qualifications { get; set; }
-        public ICollection<Experience> Experiences  { get; set; }
+        public ICollection<DoctorQualification> DoctorQualifications { get; set; }
+        public ICollection<DoctorExperience> DoctorExperiences  { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now; 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;

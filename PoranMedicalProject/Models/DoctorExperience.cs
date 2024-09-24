@@ -1,11 +1,11 @@
 ﻿namespace PoranMedicalProject.Models
 {
-    public class Qualification
+    public class DoctorExperience
     {
-        public int QualificationId { get; set; }
-        public string QualificationName { get; set; }
-        public string QualificationDescription { get; set; }
-        public int DoctorId { get; set; }   
+        public int DoctorExperienceId { get; set; }
+        public string ExpTitle { get; set; }
+        public string Description { get; set; }
+        public int DoctorId {  get; set; }
         public virtual Doctor Doctor { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;

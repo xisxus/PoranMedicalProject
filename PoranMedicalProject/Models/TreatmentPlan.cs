@@ -23,11 +23,12 @@
         public string CostCurrency { get; set; }
         public double EstimatedCost { get; set; }
 
-
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
 
-        // Many TreatmentPlans can include many Hospitals (many-to-many)
+       
+
+        
         
     }
 }

@@ -155,6 +155,41 @@ namespace PoranMedicalProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.ActivityLog", b =>
+                {
+                    b.Property<int>("ActivityLogID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActivityLogID"));
+
+                    b.Property<DateTime>("ActivityDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ActivityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PatientID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ActivityLogID");
+
+                    b.HasIndex("PatientID");
+
+                    b.ToTable("ActivityLogs");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -166,6 +201,9 @@ namespace PoranMedicalProject.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -206,6 +244,9 @@ namespace PoranMedicalProject.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -234,6 +275,13 @@ namespace PoranMedicalProject.Migrations
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("AppointmentFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -243,6 +291,9 @@ namespace PoranMedicalProject.Migrations
 
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("AppointmentID");
 
@@ -267,11 +318,17 @@ namespace PoranMedicalProject.Migrations
                     b.Property<decimal>("CommissionAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateEarned")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CommissionID");
 
@@ -296,6 +353,9 @@ namespace PoranMedicalProject.Migrations
                     b.Property<decimal>("CommissionRate")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -306,6 +366,9 @@ namespace PoranMedicalProject.Migrations
 
                     b.Property<decimal>("TotalCommissionEarned")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserID")
                         .IsRequired()
@@ -331,12 +394,18 @@ namespace PoranMedicalProject.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
 
                     b.Property<string>("ServiceType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CostID");
 
@@ -345,13 +414,24 @@ namespace PoranMedicalProject.Migrations
                     b.ToTable("Costs");
                 });
 
-            modelBuilder.Entity("PoranMedicalProject.Models.CustomerRequest", b =>
+            modelBuilder.Entity("PoranMedicalProject.Models.CustomerCallRequest", b =>
                 {
-                    b.Property<int>("CustomerRequestID")
+                    b.Property<int>("CustomerCallRequestID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerRequestID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerCallRequestID"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
                         .IsRequired()
@@ -361,18 +441,114 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientID")
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StatusMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CustomerCallRequestID");
+
+                    b.ToTable("CustomerCallRequests");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Doctor", b =>
+                {
+                    b.Property<int>("DoctorId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DoctorDasignation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerRequestID");
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("PatientID");
+                    b.Property<int>("HospitalID")
+                        .HasColumnType("int");
 
-                    b.ToTable("CustomerRequests");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DoctorId");
+
+                    b.HasIndex("HospitalID");
+
+                    b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.DoctorExperience", b =>
+                {
+                    b.Property<int>("DoctorExperienceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorExperienceId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExpTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DoctorExperienceId");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("DoctorExperiences");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.DoctorQualification", b =>
+                {
+                    b.Property<int>("DoctorQualificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorQualificationId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QualificationDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QualificationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DoctorQualificationId");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("DoctorQualifications");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Employee", b =>
@@ -386,6 +562,9 @@ namespace PoranMedicalProject.Migrations
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
                         .IsRequired()
@@ -409,14 +588,35 @@ namespace PoranMedicalProject.Migrations
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeID");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Facilities", b =>
+                {
+                    b.Property<int>("FacilitiesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FacilitiesId"));
+
+                    b.Property<string>("FacilitiesDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FacilitiesId");
+
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Feedback", b =>
@@ -431,6 +631,9 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("HospitalID")
                         .HasColumnType("int");
 
@@ -439,6 +642,9 @@ namespace PoranMedicalProject.Migrations
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("FeedbackID");
 
@@ -457,6 +663,9 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FollowUpID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("FollowUpDate")
                         .HasColumnType("datetime2");
 
@@ -467,34 +676,14 @@ namespace PoranMedicalProject.Migrations
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("FollowUpID");
 
                     b.HasIndex("PatientID");
 
                     b.ToTable("FollowUps");
-                });
-
-            modelBuilder.Entity("PoranMedicalProject.Models.GuidPatient", b =>
-                {
-                    b.Property<int>("GuidPatientID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuidPatientID"));
-
-                    b.Property<int>("GuidID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientID")
-                        .HasColumnType("int");
-
-                    b.HasKey("GuidPatientID");
-
-                    b.HasIndex("GuidID");
-
-                    b.HasIndex("PatientID");
-
-                    b.ToTable("GuidPatients");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Guide", b =>
@@ -505,7 +694,14 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuidID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("GuidName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GuidePhotoUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -513,9 +709,12 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("GuidID");
 
-                    b.ToTable("Guide");
+                    b.ToTable("Guides");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Hospital", b =>
@@ -526,17 +725,76 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HospitalID"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HospitalName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Logo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("HospitalID");
 
                     b.ToTable("Hospitals");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.HospitalFacilities", b =>
+                {
+                    b.Property<int>("HospitalFacilitiesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HospitalFacilitiesId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FacilitiesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HospitalID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("HospitalFacilitiesId");
+
+                    b.HasIndex("FacilitiesId");
+
+                    b.HasIndex("HospitalID");
+
+                    b.ToTable("HospitalFacilities");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Hotel", b =>
@@ -547,12 +805,30 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelID"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("HotelName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("HotelID");
 
@@ -567,6 +843,9 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InsuranceID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("InsuranceProvider")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -577,6 +856,9 @@ namespace PoranMedicalProject.Migrations
                     b.Property<string>("PolicyNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("InsuranceID");
 
@@ -593,6 +875,9 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicalReportID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -604,9 +889,16 @@ namespace PoranMedicalProject.Migrations
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
 
+                    b.Property<string>("ReportUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("MedicalReportID");
 
@@ -623,6 +915,12 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicineID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeliveryDateStates")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -630,10 +928,18 @@ namespace PoranMedicalProject.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PatientID")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("MedicineID");
+
+                    b.HasIndex("PatientID");
 
                     b.ToTable("Medicines");
                 });
@@ -646,6 +952,9 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientID"));
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -653,10 +962,10 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("HotelID")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("MedicineID")
+                    b.Property<int?>("HotelID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -667,8 +976,15 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TicketID")
+                    b.Property<int?>("PatientID1")
                         .HasColumnType("int");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("PatientID");
 
@@ -676,11 +992,141 @@ namespace PoranMedicalProject.Migrations
 
                     b.HasIndex("HotelID");
 
-                    b.HasIndex("MedicineID");
+                    b.HasIndex("PatientID1");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientAttendent", b =>
+                {
+                    b.Property<int>("PatientAttendentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientAttendentId"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Passport")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PatientID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PatientAttendentId");
+
+                    b.HasIndex("PatientID");
+
+                    b.ToTable("patientAttendents");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientFacilities", b =>
+                {
+                    b.Property<int>("PatientFacilitiesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientFacilitiesId"));
+
+                    b.Property<string>("PatientFacilitiesName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PatientsTravelId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PatientFacilitiesId");
+
+                    b.HasIndex("PatientsTravelId");
+
+                    b.ToTable("PatientFacilities");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientsTravel", b =>
+                {
+                    b.Property<int>("PatientsTravelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientsTravelId"));
+
+                    b.Property<int>("GuidID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GuideGuidID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PatientID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PickupLandMark")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TicketID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PatientsTravelId");
+
+                    b.HasIndex("GuideGuidID");
+
+                    b.HasIndex("PatientID");
 
                     b.HasIndex("TicketID");
 
-                    b.ToTable("Patients");
+                    b.ToTable("PatientsTravels");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Surgery", b =>
+                {
+                    b.Property<int>("SurgeryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SurgeryId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TreatmentPlanID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("SurgeryId");
+
+                    b.HasIndex("TreatmentPlanID");
+
+                    b.ToTable("Surgeries");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Ticket", b =>
@@ -691,8 +1137,29 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketID"));
 
+                    b.Property<DateTime>("ArrivelTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DestinationCity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TransportationCompany")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransportationType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("TicketID");
 
@@ -707,32 +1174,50 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TreatmentPlanID"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("CostCurrency")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("EstimatedCost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RefNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StayingHospitalDuration")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StayingOutsideDuration")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("TreatmentPlanID");
 
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("PatientId");
+
                     b.ToTable("TreatmentPlans");
-                });
-
-            modelBuilder.Entity("PoranMedicalProject.Models.TreatmentPlanHospital", b =>
-                {
-                    b.Property<int>("TreatmentPlanID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HospitalID")
-                        .HasColumnType("int");
-
-                    b.HasKey("TreatmentPlanID", "HospitalID");
-
-                    b.HasIndex("HospitalID");
-
-                    b.ToTable("TreatmentPlanHospital");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Visa", b =>
@@ -743,11 +1228,17 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisaID"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PatientID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("ProcessingFee")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("VisaStatus")
                         .IsRequired()
@@ -810,6 +1301,17 @@ namespace PoranMedicalProject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.ActivityLog", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Appointment", b =>
@@ -876,15 +1378,37 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("PoranMedicalProject.Models.CustomerRequest", b =>
+            modelBuilder.Entity("PoranMedicalProject.Models.Doctor", b =>
                 {
-                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientID")
+                    b.HasOne("PoranMedicalProject.Models.Hospital", "Hospital")
+                        .WithMany("Doctors")
+                        .HasForeignKey("HospitalID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Patient");
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.DoctorExperience", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Doctor", "Doctor")
+                        .WithMany("DoctorExperiences")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.DoctorQualification", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Doctor", "Doctor")
+                        .WithMany("DoctorQualifications")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Employee", b =>
@@ -928,23 +1452,23 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("PoranMedicalProject.Models.GuidPatient", b =>
+            modelBuilder.Entity("PoranMedicalProject.Models.HospitalFacilities", b =>
                 {
-                    b.HasOne("PoranMedicalProject.Models.Guide", "Guide")
-                        .WithMany("GuidPatients")
-                        .HasForeignKey("GuidID")
+                    b.HasOne("PoranMedicalProject.Models.Facilities", "Facilities")
+                        .WithMany("HospitalFacilities")
+                        .HasForeignKey("FacilitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
-                        .WithMany("GuidPatients")
-                        .HasForeignKey("PatientID")
+                    b.HasOne("PoranMedicalProject.Models.Hospital", "Hospital")
+                        .WithMany("HospitalFacilities")
+                        .HasForeignKey("HospitalID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Guide");
+                    b.Navigation("Facilities");
 
-                    b.Navigation("Patient");
+                    b.Navigation("Hospital");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Insurance", b =>
@@ -969,6 +1493,17 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.Medicine", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.Patient", b =>
                 {
                     b.HasOne("PoranMedicalProject.Models.ApplicationUser", null)
@@ -979,32 +1514,96 @@ namespace PoranMedicalProject.Migrations
                         .WithMany("Patients")
                         .HasForeignKey("HotelID");
 
-                    b.HasOne("PoranMedicalProject.Models.Medicine", null)
+                    b.HasOne("PoranMedicalProject.Models.Patient", null)
                         .WithMany("Patients")
-                        .HasForeignKey("MedicineID");
-
-                    b.HasOne("PoranMedicalProject.Models.Ticket", null)
-                        .WithMany("Patients")
-                        .HasForeignKey("TicketID");
+                        .HasForeignKey("PatientID1");
                 });
 
-            modelBuilder.Entity("PoranMedicalProject.Models.TreatmentPlanHospital", b =>
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientAttendent", b =>
                 {
-                    b.HasOne("PoranMedicalProject.Models.Hospital", "Hospital")
-                        .WithMany("TreatmentPlanHospitals")
-                        .HasForeignKey("HospitalID")
+                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
+                        .WithMany("PatientAttendents")
+                        .HasForeignKey("PatientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientFacilities", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.PatientsTravel", "PatientsTravel")
+                        .WithMany("PatientFacilities")
+                        .HasForeignKey("PatientsTravelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PatientsTravel");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientsTravel", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Guide", "Guide")
+                        .WithMany("PatientsTravels")
+                        .HasForeignKey("GuideGuidID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PoranMedicalProject.Models.Ticket", "Ticket")
+                        .WithMany("PatientsTravels")
+                        .HasForeignKey("TicketID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guide");
+
+                    b.Navigation("Patient");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Surgery", b =>
+                {
                     b.HasOne("PoranMedicalProject.Models.TreatmentPlan", "TreatmentPlan")
-                        .WithMany("TreatmentPlanHospitals")
+                        .WithMany("Surgeries")
                         .HasForeignKey("TreatmentPlanID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("TreatmentPlan");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.TreatmentPlan", b =>
+                {
+                    b.HasOne("PoranMedicalProject.Models.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PoranMedicalProject.Models.Hospital", "Hospital")
+                        .WithMany("TreatmentsPlans")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PoranMedicalProject.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
                     b.Navigation("Hospital");
 
-                    b.Navigation("TreatmentPlan");
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Visa", b =>
@@ -1032,24 +1631,35 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("Commissions");
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.Doctor", b =>
+                {
+                    b.Navigation("DoctorExperiences");
+
+                    b.Navigation("DoctorQualifications");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Facilities", b =>
+                {
+                    b.Navigation("HospitalFacilities");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.Guide", b =>
                 {
-                    b.Navigation("GuidPatients");
+                    b.Navigation("PatientsTravels");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Hospital", b =>
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("TreatmentPlanHospitals");
+                    b.Navigation("Doctors");
+
+                    b.Navigation("HospitalFacilities");
+
+                    b.Navigation("TreatmentsPlans");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Hotel", b =>
-                {
-                    b.Navigation("Patients");
-                });
-
-            modelBuilder.Entity("PoranMedicalProject.Models.Medicine", b =>
                 {
                     b.Navigation("Patients");
                 });
@@ -1060,22 +1670,29 @@ namespace PoranMedicalProject.Migrations
 
                     b.Navigation("Costs");
 
-                    b.Navigation("GuidPatients");
-
                     b.Navigation("MedicalReports");
+
+                    b.Navigation("PatientAttendents");
+
+                    b.Navigation("Patients");
 
                     b.Navigation("Visa")
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.PatientsTravel", b =>
+                {
+                    b.Navigation("PatientFacilities");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.Ticket", b =>
                 {
-                    b.Navigation("Patients");
+                    b.Navigation("PatientsTravels");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.TreatmentPlan", b =>
                 {
-                    b.Navigation("TreatmentPlanHospitals");
+                    b.Navigation("Surgeries");
                 });
 #pragma warning restore 612, 618
         }
