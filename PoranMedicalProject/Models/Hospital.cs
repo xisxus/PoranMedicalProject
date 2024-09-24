@@ -5,6 +5,7 @@
         public int HospitalID { get; set; }
         public string HospitalName { get; set; }
         public string Location { get; set; }
+        
 
 
 
@@ -16,5 +17,6 @@
         public ICollection<HospitalPhoto> HospitalPhotos { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
+        public ICollection<Doctor> Doctors { get; set; }    
     }
 }

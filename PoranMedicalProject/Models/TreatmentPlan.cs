@@ -4,6 +4,8 @@
     {
         public int TreatmentPlanID { get; set; }
         public string RefNo { get; set; }
+        public DateTime Date {  get; set; } ///////////
+      
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
 

@@ -6,6 +6,7 @@ namespace PoranMedicalProject.Models
     {
         public int PatientID { get; set; }
         public string Name { get; set; }
+        public int Age { get; set; }
         public string ContactInfo { get; set; }
         public string Passport { get; set; }
         public string PhotoUrl { get; set; }
