@@ -1,4 +1,6 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿using PoranMedicalProject.Models.Entites.HospitalRelated;
+
+namespace PoranMedicalProject.Models.Entites.Doctors
 {
     public class Doctor
     {

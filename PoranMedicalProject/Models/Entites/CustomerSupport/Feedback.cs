@@ -1,4 +1,7 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿using PoranMedicalProject.Models.Entites.HospitalRelated;
+using PoranMedicalProject.Models.Entites.PatientRelated;
+
+namespace PoranMedicalProject.Models.Entites.CustomerSupport
 {
     public class Feedback
     {

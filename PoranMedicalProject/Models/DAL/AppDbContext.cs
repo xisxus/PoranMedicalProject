@@ -2,6 +2,15 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PoranMedicalProject.Models.Entites;
+using PoranMedicalProject.Models.Entites.CommisionAgent;
+using PoranMedicalProject.Models.Entites.CustomerSupport;
+using PoranMedicalProject.Models.Entites.Doctors;
+using PoranMedicalProject.Models.Entites.EmployeeAndUser;
+using PoranMedicalProject.Models.Entites.GuideRelated;
+using PoranMedicalProject.Models.Entites.HospitalRelated;
+using PoranMedicalProject.Models.Entites.PatientRelated;
+using PoranMedicalProject.Models.Entites.TicketAndVisa;
+using PoranMedicalProject.Models.Entites.TreatmentAndSurgery;
 using System;
 
 namespace PoranMedicalProject.Models.DAL

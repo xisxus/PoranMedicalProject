@@ -1,4 +1,6 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿using PoranMedicalProject.Models.Entites.PatientRelated;
+
+namespace PoranMedicalProject.Models.Entites.GuideRelated
 {
     public class Guide
     {

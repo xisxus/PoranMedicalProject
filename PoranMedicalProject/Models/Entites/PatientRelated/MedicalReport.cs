@@ -1,20 +1,18 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿namespace PoranMedicalProject.Models.Entites.PatientRelated
 {
-    public class Appointment
+    public class MedicalReport
     {
-        public int AppointmentID { get; set; }
-        public DateTime AppointmentDate { get; set; }
+        public int MedicalReportID { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
         public string Description { get; set; }
-        public string AppointmentFile { get; set; }
+        public string ReportUrl { get; set; }
 
+
+        // Each MedicalReport is associated with one Patient
         public int PatientID { get; set; }
         public Patient Patient { get; set; }
-
-        public int HospitalID { get; set; }
-        public Hospital Hospital { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
-
-
     }
 }

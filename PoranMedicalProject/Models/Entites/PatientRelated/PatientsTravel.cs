@@ -1,4 +1,7 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿using PoranMedicalProject.Models.Entites.GuideRelated;
+using PoranMedicalProject.Models.Entites.TicketAndVisa;
+
+namespace PoranMedicalProject.Models.Entites.PatientRelated
 {
     public class PatientsTravel
     {

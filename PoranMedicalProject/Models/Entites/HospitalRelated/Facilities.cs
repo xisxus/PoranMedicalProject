@@ -1,4 +1,4 @@
-﻿namespace PoranMedicalProject.Models.Entites
+﻿namespace PoranMedicalProject.Models.Entites.HospitalRelated
 {
     public class Facilities
     {

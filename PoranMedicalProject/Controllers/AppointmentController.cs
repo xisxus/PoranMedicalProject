@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PoranMedicalProject.Models.DTO;
 using PoranMedicalProject.Models;
 using PoranMedicalProject.Models.DAL;
+using PoranMedicalProject.Models.Entites.TreatmentAndSurgery;
 
 namespace PoranMedicalProject.Controllers
 {

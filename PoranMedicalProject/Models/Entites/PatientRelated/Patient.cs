@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Hosting;
+using PoranMedicalProject.Models.Entites.TicketAndVisa;
+using PoranMedicalProject.Models.Entites.TreatmentAndSurgery;
 
-namespace PoranMedicalProject.Models.Entites
+namespace PoranMedicalProject.Models.Entites.PatientRelated
 {
     public class Patient
     {
@@ -17,7 +19,7 @@ namespace PoranMedicalProject.Models.Entites
         public ICollection<MedicalReport> MedicalReports { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Cost> Costs { get; set; }
-        public ICollection<Patient> Patients { get; set; }
+
 
         // One Patient can have one Visa
         public Visa Visa { get; set; }

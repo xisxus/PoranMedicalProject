@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using PoranMedicalProject.Models.Entites.CommisionAgent;
+using PoranMedicalProject.Models.Entites.PatientRelated;
 using System;
 
-namespace PoranMedicalProject.Models.Entites
+namespace PoranMedicalProject.Models.Entites.EmployeeAndUser
 {
     public class ApplicationUser : IdentityUser
     {
