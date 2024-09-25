@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PoranMedicalProject.Models.DTO;
-using PoranMedicalProject.Models;
+using PoranMedicalProject.Models.Entites;
 
 namespace PoranMedicalProject.Controllers
 {

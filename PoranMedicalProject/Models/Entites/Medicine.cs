@@ -1,4 +1,4 @@
-﻿namespace PoranMedicalProject.Models
+﻿namespace PoranMedicalProject.Models.Entites
 {
     public class Medicine
     {

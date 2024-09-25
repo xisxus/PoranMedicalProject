@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace PoranMedicalProject.Models
+namespace PoranMedicalProject.Models.Entites
 {
     public class Patient
     {
@@ -17,16 +17,16 @@ namespace PoranMedicalProject.Models
         public ICollection<MedicalReport> MedicalReports { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Cost> Costs { get; set; }
-        public ICollection<Patient> Patients { get; set; } 
+        public ICollection<Patient> Patients { get; set; }
 
         // One Patient can have one Visa
         public Visa Visa { get; set; }
 
-        public ICollection<PatientAttendent>PatientAttendents { get; set; }
+        public ICollection<PatientAttendent> PatientAttendents { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
 
-        
-       
+
+
     }
 }

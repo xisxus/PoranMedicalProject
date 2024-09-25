@@ -1,20 +1,15 @@
-﻿namespace PoranMedicalProject.Models
+﻿namespace PoranMedicalProject.Models.Entites
 {
-    public class Appointment
+    public class Feedback
     {
-        public int AppointmentID { get; set; }
-        public DateTime AppointmentDate { get; set; }
-        public string Description { get; set; }
-        public string AppointmentFile { get; set; }
-
+        public int FeedbackID { get; set; }
         public int PatientID { get; set; }
-        public Patient Patient { get; set; }
-
         public int HospitalID { get; set; }
+        public string Comments { get; set; }
+        public int Rating { get; set; }  // e.g., from 1 to 5 stars
+        public Patient Patient { get; set; }
         public Hospital Hospital { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
-
-        
     }
 }

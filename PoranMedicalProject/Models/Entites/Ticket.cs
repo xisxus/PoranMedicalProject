@@ -1,4 +1,4 @@
-﻿namespace PoranMedicalProject.Models
+﻿namespace PoranMedicalProject.Models.Entites
 {
     public class Ticket
     {
@@ -11,7 +11,7 @@
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
 
-            public ICollection<PatientsTravel>PatientsTravels { get; set; }
+        public ICollection<PatientsTravel> PatientsTravels { get; set; }
 
     }
 }

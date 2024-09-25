@@ -1,4 +1,4 @@
-﻿namespace PoranMedicalProject.Models
+﻿namespace PoranMedicalProject.Models.Entites
 {
     public class CustomerCallRequest
     {
@@ -14,7 +14,7 @@
 
 
         // Each request may belong to one patient
-      
+
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
     }
