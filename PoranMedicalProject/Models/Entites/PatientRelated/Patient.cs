@@ -22,7 +22,7 @@ namespace PoranMedicalProject.Models.Entites.PatientRelated
 
 
         // One Patient can have one Visa
-        public Visa Visa { get; set; }
+        public VisaProcessing Visa { get; set; }
 
         public ICollection<PatientAttendent> PatientAttendents { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created

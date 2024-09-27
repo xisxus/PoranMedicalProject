@@ -2,9 +2,12 @@
 
 namespace PoranMedicalProject.Models.Entites.TicketAndVisa
 {
-    public class Visa
+    public class VisaProcessing
     {
-        public int VisaID { get; set; }
+        public int VisaProcessingID { get; set; }
+
+        public string ApplicationId { get; set; }
+
         public string VisaStatus { get; set; }
         public decimal ProcessingFee { get; set; }
         public int PatientID { get; set; }

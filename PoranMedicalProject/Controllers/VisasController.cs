@@ -37,7 +37,7 @@ namespace PoranMedicalProject.Controllers
         [HttpPost]
         public async Task<ActionResult<VisaDto>> CreateVisa(VisaDto dto)
         {
-            var visa = new Visa
+            var visa = new VisaProcessing
             {
                 PatientID = dto.PatientID,
                 VisaStatus = dto.VisaStatus,

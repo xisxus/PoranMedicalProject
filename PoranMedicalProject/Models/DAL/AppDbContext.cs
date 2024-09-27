@@ -53,7 +53,7 @@ namespace PoranMedicalProject.Models.DAL
 
         public DbSet<TreatmentPlan> TreatmentPlans { get; set; }
         
-        public DbSet<Visa> Visas { get; set; }
+        public DbSet<VisaProcessing> Visas { get; set; }
         public DbSet<TeleMedichineRequest> TeleMedichineRequests { get; set; }
         public DbSet<Complain> Complains { get; set; }
 
