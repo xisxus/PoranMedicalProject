@@ -40,7 +40,7 @@ namespace PoranMedicalProject.Controllers
                 MedicalReports = patient.MedicalReports.Select(m => m.MedicalReportID).ToList(),
                 Appointments = patient.Appointments.Select(a => a.AppointmentID).ToList(),
                 Costs = patient.Costs.Select(c => c.CostID).ToList(),
-                VisaId = patient.Visa?.VisaID ?? 0
+                VisaId = patient.Visa?.VisaProcessingID ?? 0
             };
 
             return Ok(patientDto);

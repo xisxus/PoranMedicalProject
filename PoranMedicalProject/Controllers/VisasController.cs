@@ -46,7 +46,7 @@ namespace PoranMedicalProject.Controllers
             _context.Visas.Add(visa);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetVisa), new { id = visa.VisaID }, visa);
+            return CreatedAtAction(nameof(GetVisa), new { id = visa.VisaProcessingID }, visa);
         }
 
         [HttpPut("{id}")]
