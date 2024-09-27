@@ -9,8 +9,8 @@ namespace PoranMedicalProject.Models.Entites.TicketAndVisa
         public decimal ProcessingFee { get; set; }
         public int PatientID { get; set; }
         public Patient Patient { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
+        public DateTime CreatedAt { get; set; } = DateTime.Now; 
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;  
 
     }
 }

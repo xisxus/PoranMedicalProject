@@ -1,6 +1,6 @@
 ﻿using PoranMedicalProject.Models.Entites.PatientRelated;
 
-namespace PoranMedicalProject.Models.Entites
+namespace PoranMedicalProject.Models.Entites.LogAndComplain
 {
     public class ActivityLog
     {

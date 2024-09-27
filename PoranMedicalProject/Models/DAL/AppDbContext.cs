@@ -8,6 +8,7 @@ using PoranMedicalProject.Models.Entites.Doctors;
 using PoranMedicalProject.Models.Entites.EmployeeAndUser;
 using PoranMedicalProject.Models.Entites.GuideRelated;
 using PoranMedicalProject.Models.Entites.HospitalRelated;
+using PoranMedicalProject.Models.Entites.LogAndComplain;
 using PoranMedicalProject.Models.Entites.PatientRelated;
 using PoranMedicalProject.Models.Entites.TicketAndVisa;
 using PoranMedicalProject.Models.Entites.TreatmentAndSurgery;
@@ -53,6 +54,10 @@ namespace PoranMedicalProject.Models.DAL
         public DbSet<TreatmentPlan> TreatmentPlans { get; set; }
         
         public DbSet<Visa> Visas { get; set; }
+        public DbSet<TeleMedichineRequest> TeleMedichineRequests { get; set; }
+        public DbSet<Complain> Complains { get; set; }
+
+
        
        
        
