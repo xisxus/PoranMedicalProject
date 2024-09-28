@@ -28,5 +28,6 @@ namespace PoranMedicalProject.Models.Entites.HospitalRelated
         public ICollection<Doctor> Doctors { get; set; }
 
         public ICollection<TreatmentPlan> TreatmentsPlans { get; set; }
+   
     }
 }

@@ -39,7 +39,7 @@ namespace PoranMedicalProject.Models.DAL
         public DbSet<HospitalFacilities> HospitalFacilities { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Insurance> Insurances { get; set; }
-       
+
         public DbSet<MedicalReport> MedicalReports { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Patient> Patients { get; set; }
@@ -52,19 +52,19 @@ namespace PoranMedicalProject.Models.DAL
 
 
         public DbSet<TreatmentPlan> TreatmentPlans { get; set; }
-        
+
         public DbSet<VisaProcessing> Visas { get; set; }
         public DbSet<TeleMedichineRequest> TeleMedichineRequests { get; set; }
         public DbSet<Complain> Complains { get; set; }
-        public DbSet<VisaApply>  VisaApplies { get; set; }
-        public DbSet<VisaApplicationForm>  VisaApplicationForms { get; set; }
+        public DbSet<VisaApply> VisaApplies { get; set; }
+        public DbSet<VisaApplicationForm> VisaApplicationForms { get; set; }
 
 
-       
-       
-       
-       
-    
+
+
+
+
+
 
         // Override the OnModelCreating method for any specific configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -107,14 +107,14 @@ namespace PoranMedicalProject.Models.DAL
                 .WithMany(ca => ca.Commissions)
                 .HasForeignKey(c => c.AgentID);
 
-           
+
 
             modelBuilder.Entity<CommissionAgent>()
                  .HasOne(ca => ca.ApplicationUser)
                  .WithMany()  // Assuming each ApplicationUser can have multiple CommissionAgents
                  .HasForeignKey(ca => ca.UserID);
 
-          
+
 
             // Define relationships for Hospital and Appointment
             modelBuilder.Entity<Hospital>()
@@ -125,11 +125,32 @@ namespace PoranMedicalProject.Models.DAL
             modelBuilder.Entity<Guide>()
         .HasKey(g => g.GuidID);
 
+
+
             modelBuilder.Entity<TreatmentPlan>()
-           .HasOne(tp => tp.Hospital)
-           .WithMany(h => h.TreatmentsPlans)
-           .HasForeignKey(tp => tp.HospitalId)
-           .OnDelete(DeleteBehavior.NoAction); // Specify 'Restrict' to avoid cascading deletes
+             .HasOne(tp => tp.Doctor)
+             .WithMany(d => d.TreatmentPlans)
+             .HasForeignKey(tp => tp.DoctorId)
+             .OnDelete(DeleteBehavior.NoAction);  // Specify behavior on delete
+
+            modelBuilder.Entity<TreatmentPlan>()
+                .HasOne(tp => tp.ResidenceDoctor)
+                .WithMany()
+                .HasForeignKey(tp => tp.ResidenceDoctorId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<TreatmentPlan>()
+                .HasOne(tp => tp.Hospital)
+                .WithMany(h => h.TreatmentsPlans)
+                .HasForeignKey(tp => tp.HospitalId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<TreatmentPlan>()
+                .HasOne(tp => tp.ResidenceHospital)
+                .WithMany()
+                .HasForeignKey(tp => tp.ResidenceHospitalId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
+

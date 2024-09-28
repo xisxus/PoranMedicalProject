@@ -483,6 +483,7 @@ namespace PoranMedicalProject.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DoctorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DoctorDasignation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HospitalID = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -920,6 +921,8 @@ namespace PoranMedicalProject.Migrations
                     StayingOutsideDuration = table.Column<int>(type: "int", nullable: false),
                     CostCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstimatedCost = table.Column<double>(type: "float", nullable: false),
+                    ResidenceDoctorId = table.Column<int>(type: "int", nullable: false),
+                    ResidenceHospitalId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -930,11 +933,20 @@ namespace PoranMedicalProject.Migrations
                         name: "FK_TreatmentPlans_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
-                        principalColumn: "DoctorId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "DoctorId");
+                    table.ForeignKey(
+                        name: "FK_TreatmentPlans_Doctors_ResidenceDoctorId",
+                        column: x => x.ResidenceDoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "DoctorId");
                     table.ForeignKey(
                         name: "FK_TreatmentPlans_Hospitals_HospitalId",
                         column: x => x.HospitalId,
+                        principalTable: "Hospitals",
+                        principalColumn: "HospitalID");
+                    table.ForeignKey(
+                        name: "FK_TreatmentPlans_Hospitals_ResidenceHospitalId",
+                        column: x => x.ResidenceHospitalId,
                         principalTable: "Hospitals",
                         principalColumn: "HospitalID");
                     table.ForeignKey(
@@ -1213,6 +1225,16 @@ namespace PoranMedicalProject.Migrations
                 name: "IX_TreatmentPlans_PatientId",
                 table: "TreatmentPlans",
                 column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TreatmentPlans_ResidenceDoctorId",
+                table: "TreatmentPlans",
+                column: "ResidenceDoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TreatmentPlans_ResidenceHospitalId",
+                table: "TreatmentPlans",
+                column: "ResidenceHospitalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VisaApplies_TreatmentPlanID",

@@ -2,9 +2,9 @@
 using PoranMedicalProject.Models.Entites.HospitalRelated;
 using PoranMedicalProject.Models.Entites.PatientRelated;
 using PoranMedicalProject.Models.Entites.TicketAndVisa;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
 
 namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
 {
@@ -15,14 +15,15 @@ namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
         public DateTime Date { get; set; }
 
         public int PatientId { get; set; }
+        [ForeignKey("PatientId")]
         public virtual Patient Patient { get; set; }
 
-        [ForeignKey("Doctor")]
         public int DoctorId { get; set; }
+        [ForeignKey("DoctorId")]
         public virtual Doctor Doctor { get; set; }
 
-        [ForeignKey("Hospital")]
         public int HospitalId { get; set; }
+        [ForeignKey("HospitalId")]
         public virtual Hospital Hospital { get; set; }
 
         public ICollection<Surgery> Surgeries { get; set; }
@@ -33,21 +34,17 @@ namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
         public string CostCurrency { get; set; }
         public double EstimatedCost { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now; // Timestamp when the entry was created
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
-
         public ICollection<VisaApply> VisaApplies { get; set; }
 
-
-        [ForeignKey("ResidenceDoctor")]
         public int ResidenceDoctorId { get; set; }
+        [ForeignKey("ResidenceDoctorId")]
         public virtual Doctor ResidenceDoctor { get; set; }
 
-
-        [ForeignKey("ResidenceHospital")]
         public int ResidenceHospitalId { get; set; }
+        [ForeignKey("ResidenceHospitalId")]
         public virtual Hospital ResidenceHospital { get; set; }
 
-
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -395,6 +395,10 @@ namespace PoranMedicalProject.Migrations
                     b.Property<int>("HospitalID")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -1650,6 +1654,12 @@ namespace PoranMedicalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ResidenceDoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResidenceHospitalId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StayingHospitalDuration")
                         .HasColumnType("int");
 
@@ -1666,6 +1676,10 @@ namespace PoranMedicalProject.Migrations
                     b.HasIndex("HospitalId");
 
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("ResidenceDoctorId");
+
+                    b.HasIndex("ResidenceHospitalId");
 
                     b.ToTable("TreatmentPlans");
                 });
@@ -2023,9 +2037,9 @@ namespace PoranMedicalProject.Migrations
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.TreatmentAndSurgery.TreatmentPlan", b =>
                 {
                     b.HasOne("PoranMedicalProject.Models.Entites.Doctors.Doctor", "Doctor")
-                        .WithMany()
+                        .WithMany("TreatmentPlans")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("PoranMedicalProject.Models.Entites.HospitalRelated.Hospital", "Hospital")
@@ -2040,11 +2054,27 @@ namespace PoranMedicalProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PoranMedicalProject.Models.Entites.Doctors.Doctor", "ResidenceDoctor")
+                        .WithMany()
+                        .HasForeignKey("ResidenceDoctorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("PoranMedicalProject.Models.Entites.HospitalRelated.Hospital", "ResidenceHospital")
+                        .WithMany()
+                        .HasForeignKey("ResidenceHospitalId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Doctor");
 
                     b.Navigation("Hospital");
 
                     b.Navigation("Patient");
+
+                    b.Navigation("ResidenceDoctor");
+
+                    b.Navigation("ResidenceHospital");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.CommisionAgent.CommissionAgent", b =>
@@ -2057,6 +2087,8 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("DoctorExperiences");
 
                     b.Navigation("DoctorQualifications");
+
+                    b.Navigation("TreatmentPlans");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.EmployeeAndUser.ApplicationUser", b =>
