@@ -12,8 +12,8 @@ using PoranMedicalProject.Models.DAL;
 namespace PoranMedicalProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240927200539_nect")]
-    partial class nect
+    [Migration("20240928200121_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -937,11 +937,16 @@ namespace PoranMedicalProject.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("VisaProcessingID")
+                        .HasColumnType("int");
+
                     b.HasKey("PatientID");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("HotelID");
+
+                    b.HasIndex("VisaProcessingID");
 
                     b.ToTable("Patients");
                 });
@@ -1083,6 +1088,322 @@ namespace PoranMedicalProject.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaApplicationForm", b =>
+                {
+                    b.Property<int>("VisaApplicationFormID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisaApplicationFormID"));
+
+                    b.Property<string>("AddressStayedInIndia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AreHaveYouWorkedWithArmedforcesPoliceParaMilitaryforces")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BanRefAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BanRefName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BanRefPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BeenRefusedIndianVisaOrDeported")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CitiesVisitedInIndia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CitizenshipId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountriesVisitedLast10Years")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CountryOfIssue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentNationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Designation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DesignationOrRank")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationalQualification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployerAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployerNameOrBusiness")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployerPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Entries")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpectedDateOfJourney")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FDPlaceOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FDPreviousNationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GivenName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasOtherPassportOrIdentityCertificate")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HaveYouVisitedIndia")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("IdentificationMarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianHotelAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianHotelPhoneNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianHotelPlaceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianHotelState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianRefAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianRefName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndianRefPhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaritalStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobileNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalityType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("OtherPassportHeld")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("PassportDateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassportNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassportOrICNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassportPlaceOfIssue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PastOccupationIfAny")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Period")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PermanentAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceOfIssue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceofPosting")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PortOfArrival")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PortOfExit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PresentAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PresentOccupation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreviousName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreviousNationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurposeOfVisit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rank")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Relation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Religion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeOfVisa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VisaIssueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VisaIssuedPlace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VisaNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VisaType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("VisaApplicationFormID");
+
+                    b.ToTable("VisaApplicationForms");
+                });
+
+            modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaApply", b =>
+                {
+                    b.Property<int>("VisaApplyID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisaApplyID"));
+
+                    b.Property<int>("TreatmentPlanID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VisaApplicationFormID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VisaApplyFor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("VisaApplyID");
+
+                    b.HasIndex("TreatmentPlanID");
+
+                    b.HasIndex("VisaApplicationFormID");
+
+                    b.ToTable("VisaApplies");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaProcessing", b =>
                 {
                     b.Property<int>("VisaProcessingID")
@@ -1091,30 +1412,61 @@ namespace PoranMedicalProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisaProcessingID"));
 
-                    b.Property<string>("ApplicationId")
+                    b.Property<string>("ApplicationForm")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ApplyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("AppoinmentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PatientID")
-                        .HasColumnType("int");
+                    b.Property<string>("HospitalAppointmentLetter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NationalIDOrBirthCertificate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassportStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ProcessingFee")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ProofOfFinancialSoundnessStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProofOfProfessionStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProofOfResidenceStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("VisaApplyID")
+                        .HasColumnType("int");
 
                     b.Property<string>("VisaStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VisaProcessingID");
-
-                    b.HasIndex("PatientID")
-                        .IsUnique();
 
                     b.ToTable("Visas");
                 });
@@ -1552,6 +1904,14 @@ namespace PoranMedicalProject.Migrations
                     b.HasOne("PoranMedicalProject.Models.Entites.Hotel", null)
                         .WithMany("Patients")
                         .HasForeignKey("HotelID");
+
+                    b.HasOne("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaProcessing", "Visa")
+                        .WithMany()
+                        .HasForeignKey("VisaProcessingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Visa");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.PatientRelated.PatientAttendent", b =>
@@ -1603,15 +1963,23 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("Ticket");
                 });
 
-            modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaProcessing", b =>
+            modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaApply", b =>
                 {
-                    b.HasOne("PoranMedicalProject.Models.Entites.PatientRelated.Patient", "Patient")
-                        .WithOne("Visa")
-                        .HasForeignKey("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaProcessing", "PatientID")
+                    b.HasOne("PoranMedicalProject.Models.Entites.TreatmentAndSurgery.TreatmentPlan", "TreatmentPlan")
+                        .WithMany("VisaApplies")
+                        .HasForeignKey("TreatmentPlanID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Patient");
+                    b.HasOne("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaApplicationForm", "VisaApplicationForm")
+                        .WithMany("VisaApplies")
+                        .HasForeignKey("VisaApplicationFormID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TreatmentPlan");
+
+                    b.Navigation("VisaApplicationForm");
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.TreatmentAndSurgery.Appointment", b =>
@@ -1738,9 +2106,6 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("MedicalReports");
 
                     b.Navigation("PatientAttendents");
-
-                    b.Navigation("Visa")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.PatientRelated.PatientsTravel", b =>
@@ -1753,9 +2118,16 @@ namespace PoranMedicalProject.Migrations
                     b.Navigation("PatientsTravels");
                 });
 
+            modelBuilder.Entity("PoranMedicalProject.Models.Entites.TicketAndVisa.VisaApplicationForm", b =>
+                {
+                    b.Navigation("VisaApplies");
+                });
+
             modelBuilder.Entity("PoranMedicalProject.Models.Entites.TreatmentAndSurgery.TreatmentPlan", b =>
                 {
                     b.Navigation("Surgeries");
+
+                    b.Navigation("VisaApplies");
                 });
 #pragma warning restore 612, 618
         }

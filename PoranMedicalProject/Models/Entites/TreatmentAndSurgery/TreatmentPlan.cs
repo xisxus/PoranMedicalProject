@@ -1,6 +1,7 @@
 ﻿using PoranMedicalProject.Models.Entites.Doctors;
 using PoranMedicalProject.Models.Entites.HospitalRelated;
 using PoranMedicalProject.Models.Entites.PatientRelated;
+using PoranMedicalProject.Models.Entites.TicketAndVisa;
 
 
 
@@ -10,7 +11,7 @@ namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
     {
         public int TreatmentPlanID { get; set; }
         public string RefNo { get; set; }
-        public DateTime Date { get; set; } ///////////
+        public DateTime Date { get; set; } 
 
         public int PatientId { get; set; }
         public virtual Patient Patient { get; set; }
@@ -33,7 +34,7 @@ namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
         public DateTime UpdatedAt { get; set; } = DateTime.Now;  // Timestamp when the entry was last updated
 
 
-
+        public ICollection<VisaApply> VisaApplies { get; set; }
 
 
     }

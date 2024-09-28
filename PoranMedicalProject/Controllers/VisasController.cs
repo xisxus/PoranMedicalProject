@@ -39,7 +39,7 @@ namespace PoranMedicalProject.Controllers
         {
             var visa = new VisaProcessing
             {
-                PatientID = dto.PatientID,
+                //PatientID = dto.PatientID,
                 VisaStatus = dto.VisaStatus,
                 ProcessingFee = dto.ProcessingFee
             };
@@ -57,7 +57,7 @@ namespace PoranMedicalProject.Controllers
             var visa = await _context.Visas.FindAsync(id);
             if (visa == null) return NotFound();
 
-            visa.PatientID = dto.PatientID;
+           // visa.PatientID = dto.PatientID;
             visa.VisaStatus = dto.VisaStatus;
             visa.ProcessingFee = dto.ProcessingFee;
 
