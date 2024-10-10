@@ -37,14 +37,17 @@ namespace PoranMedicalProject.Models.Entites.TreatmentAndSurgery
         public ICollection<VisaApply> VisaApplies { get; set; }
 
         public int ResidenceDoctorId { get; set; }
-        [ForeignKey("ResidenceDoctorId")]
-        public virtual Doctor ResidenceDoctor { get; set; }
+
+        public virtual ResidenceDoctor ResidenceDoctor { get; set; }
 
         public int ResidenceHospitalId { get; set; }
-        [ForeignKey("ResidenceHospitalId")]
-        public virtual Hospital ResidenceHospital { get; set; }
+
+        public virtual ResidenceHospital ResidenceHospital { get; set; }
+
+
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
     }
 }
